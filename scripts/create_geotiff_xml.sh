@@ -19,7 +19,8 @@ for PJ in {13..36}; do
             -co TEMPLATE=segment_template.xml\
             $file $xml_file
 
-        sed -i 's/filename/'$fname'/' $xml_file
+        fname_lower=$(echo $fname | sed -e 's/\(.*\)/\L\1/')
+        sed -i 's/filename/'$fname_lower'/' $xml_file
         cp $file data_segments/PJ${PJ}/${fname}.tif
         # gdal_translate -of "PDS4" ${file}
     done
